@@ -1,14 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  base: '/interview-practice/docs/',
+  base: '/interview-practice/',
   title: '前端面试刷题',
   description: '每日半小时，巩固基础，助力面试',
   dest: path.resolve(__dirname, '../../docs'),
   themeConfig: {
     nav: [
-      {text: 'github', link: 'https://github.com/iloveyou11/learning-one-question-per-day'},
-      {text: '个人博客', link: 'https://github.com/iloveyou11/learning-blog'}
+      { text: 'github', link: 'https://github.com/iloveyou11/interview-practice' },
+      { text: '个人博客', link: 'https://github.com/iloveyou11/learning-blog' }
     ],
     sidebarDepth: 0,
     sidebar: [

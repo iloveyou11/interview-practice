@@ -1,18 +1,6 @@
-## 方法1：在线运行
-执行命令：
+[在线地址](https://iloveyou11.github.io/interview-practice/)
 
-```sh
-npm i
-npm run dev
-```
-
-打开 http://localhost:8080/interview-practice/docs/ ，即可访问。
-
-## 方法2：在线部署
-
-会采用surge工具部署网站，进行中…… 后续会给出在线地址。
-
-## 方法3：直接阅读下面的文章
+---
 
 - [js相关](#js%E7%9B%B8%E5%85%B3)
   - [Async/Await 如何通过同步的方式实现异步](#asyncawait-%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5)
