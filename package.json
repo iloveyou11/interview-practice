@@ -1,0 +1,27 @@
+{
+  "name": "interview-practice",
+  "version": "1.0.0",
+  "description": "前端面试宝典",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "clean": "rm -rf ./docs",
+    "build": "npm run clean && vuepress build src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iloveyou11/interview-practice"
+  },
+  "keywords": [
+    "leetcode"
+  ],
+  "author": "iloveyou11",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iloveyou11/interview-practice/issues"
+  },
+  "homepage": "https://github.com/iloveyou11/interview-practice#readme",
+  "dependencies": {
+    "vuepress": "^1.8.2"
+  }
+}
