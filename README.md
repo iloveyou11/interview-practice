@@ -1,6 +1,7 @@
 执行命令：
 
 ```sh
+npm i
 npm run dev
 ```
 
