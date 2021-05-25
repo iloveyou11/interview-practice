@@ -3,7 +3,7 @@
 
 ## 部署流程
 1. 运行`npm run build`构建项目，会发现项目下会生成`docs`文件夹，其中存放了所有的静态资源。
-2. 在 `src/.vuepress/config.js` 中设置正确的 base。如果你打算发布到 `https://<USERNAME>.github.io/`，则可以省略这一步，因为 base 默认即是 "/"。如果你打算发布到 `https://<USERNAME>.github.io/<REPO>/`（也就是说你的仓库在 `https://github.com/<USERNAME>/<REPO>`），则将 base 设置为 "/<REPO>/"。
+2. 在 `src/.vuepress/config.js` 中设置正确的 base。如果你打算发布到 `https://<USERNAME>.github.io/`，则可以省略这一步，因为 base 默认即是 "/"。如果你打算发布到 `https://<USERNAME>.github.io/<REPO>/`（也就是说你的仓库在 `https://github.com/<USERNAME>/<REPO>`），则将 base 设置为 `/<REPO>/`。
 3. 在项目根目录下创建`deploy.sh`文件，这里我决定部署到`https://github.com/<USERNAME>/<REPO>`，文件内容如下：
 ```sh
 #!/usr/bin/env sh
@@ -33,6 +33,8 @@ cd -
 5. 这时可以直接通过`https://<USERNAME>.github.io/<REPO>`访问在线页面。
 
 ## 题目大纲
+
+以下内容也可以直接阅读，为了阅读体验，推荐通过[在线地址](https://iloveyou11.github.io/interview-practice/)阅读~
 
 - [js相关](#js%E7%9B%B8%E5%85%B3)
   - [Async/Await 如何通过同步的方式实现异步](#asyncawait-%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5)
