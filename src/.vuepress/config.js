@@ -49,6 +49,8 @@ module.exports = {
           '/js/30',
           '/js/31',
           '/js/32',
+          '/js/33',
+          '/js/34',
         ]
       },
       {
@@ -79,6 +81,14 @@ module.exports = {
         ]
       },
       {
+        title: '前端工程系列',
+        collapsable: true,
+        sidebarDepth: 1,
+        children: [
+          '/workflow/1',
+        ]
+      },
+      {
         title: '框架系列',
         collapsable: true,
         sidebarDepth: 1,
@@ -90,6 +100,8 @@ module.exports = {
           '/framework/5',
           '/framework/6',
           '/framework/7',
+          '/framework/8',
+          '/framework/9',
         ]
       },
       {
@@ -98,6 +110,7 @@ module.exports = {
         sidebarDepth: 1,
         children: [
           '/node/1',
+          '/node/2',
         ]
       },
       {
@@ -134,6 +147,8 @@ module.exports = {
           '/network/2',
           '/network/3',
           '/network/4',
+          '/network/5',
+          '/network/6',
         ]
       },
       {
