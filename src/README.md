@@ -14,6 +14,6 @@ features:
   details: 关于node的一些知识点
 - title: 算法系列
   details: 前端也需要掌握的算法题
-- title: 网络/安全系列
+- title: 网络系列
   details: 网络和前端是孪生兄弟
 ---
