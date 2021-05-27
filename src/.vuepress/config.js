@@ -65,6 +65,8 @@ module.exports = {
           "/js/4", // 如何模拟实现 Array.prototype.splice
           "/js/45", // 前端错误监控与错误上报
           "/js/34", // 如何排查内存泄漏带来的页面卡顿
+          "/js/48", // 1000-div问题
+          "/js/49", // 2万小球问题
      
         ]
       },
@@ -109,12 +111,14 @@ module.exports = {
           "/browser/1", // 浏览器和 Node 事件循环的区别
           "/browser/8", // 常用的跨域解决方案有哪些？
           "/browser/6", // 浏览器存储方案有哪些？
-          "/browser/2", // 为什么不会劫持 token？
-          "/browser/10", // token&cookie&session对比？
+          "/browser/2", // 浏览器为什么不会劫持 token？
+          "/browser/10", // Cookie、Session、Token、JWT？
           "/browser/9", // 前端保存登录状态信息该如何保存
           "/browser/4", // memory cache 和 disk cache
           "/browser/3", // 如何计算白屏时间和首屏时间
           "/browser/5", // 发送数据埋点为何使用1x1透明gif图？
+          "/browser/11", // 前端如何进行seo优化？
+          "/browser/12", // 前后端分离的项目如何seo？
         ]
       },
       {
@@ -185,6 +189,8 @@ module.exports = {
           "/algorithm/18", // 将指定字符串转化为特定结构的json
           "/algorithm/19", // 经典排序算法实现
           "/algorithm/22", // 如何判断url中只包含qq.com
+          "/algorithm/23", // 【题库】剑指offer刷题
+          "/algorithm/24", // 【题库】动态规划DP刷题
         ]
       },
       {
@@ -193,13 +199,13 @@ module.exports = {
         "sidebarDepth": 1,
         "children": [
           "/network/6", // 前端必须了解的http基础
-          "/network/11", // 状态码 301 和 302 的分别是什么
+          "/network/11", // 常见的状态码及含义
+          "/network/25", // 每个协议和HTTP协议的关系
           "/network/24", // 页面出现空白，怎么排查定位问题？
           "/network/1", // TCP 三次握手和四次挥手的理解
           "/network/9", // 为什么HTTP1.1不能实现多路复用
           "/network/10", // 简单讲解一下 http2 的多路复用
           "/network/12", // http1.0、1.1、2.0 协议的区别？
-          "/network/2", // 介绍下HTTPS 中间人攻击
           "/network/3", // 对称加密 & 非对称加密
           "/network/7", // 前端加密的常见场景和方法
           "/network/4", // 如何实现token加密？
@@ -216,6 +222,8 @@ module.exports = {
           "/network/21", // 什么是负载均衡？常见实现方案？
           "/network/22", // 数据推送方案有哪些？
           "/network/23", // WebSocket的实现和应用
+          "/network/2", // 介绍下HTTPS 中间人攻击
+          "/network/26", // 如何劫持https的请求？
         ]
       }
     ]
