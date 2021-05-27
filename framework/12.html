@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>dom diff怎么实现的知道吗？ | 前端面试刷题</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="每日半小时，巩固基础，助力面试">
+    
+    <link rel="preload" href="/interview-practice/assets/css/0.styles.f521d097.css" as="style"><link rel="preload" href="/interview-practice/assets/js/app.dca29c20.js" as="script"><link rel="preload" href="/interview-practice/assets/js/2.8c098b1a.js" as="script"><link rel="preload" href="/interview-practice/assets/js/47.1b818390.js" as="script"><link rel="prefetch" href="/interview-practice/assets/js/10.54827f59.js"><link rel="prefetch" href="/interview-practice/assets/js/100.dbfd26f0.js"><link rel="prefetch" href="/interview-practice/assets/js/101.752719ed.js"><link rel="prefetch" href="/interview-practice/assets/js/102.6386fd9b.js"><link rel="prefetch" href="/interview-practice/assets/js/103.c329bc72.js"><link rel="prefetch" href="/interview-practice/assets/js/104.4432ccb7.js"><link rel="prefetch" href="/interview-practice/assets/js/105.83bf3e88.js"><link rel="prefetch" href="/interview-practice/assets/js/106.749a91d7.js"><link rel="prefetch" href="/interview-practice/assets/js/107.8ee0ded0.js"><link rel="prefetch" href="/interview-practice/assets/js/108.32f0bdf4.js"><link rel="prefetch" href="/interview-practice/assets/js/109.d6c17da9.js"><link rel="prefetch" href="/interview-practice/assets/js/11.d618fd0e.js"><link rel="prefetch" href="/interview-practice/assets/js/110.6a3dc91c.js"><link rel="prefetch" href="/interview-practice/assets/js/111.9b4f363f.js"><link rel="prefetch" href="/interview-practice/assets/js/112.47db9ff1.js"><link rel="prefetch" href="/interview-practice/assets/js/113.34888eb7.js"><link rel="prefetch" href="/interview-practice/assets/js/114.4aa95a8f.js"><link rel="prefetch" href="/interview-practice/assets/js/115.a361375c.js"><link rel="prefetch" href="/interview-practice/assets/js/116.a767fb5c.js"><link rel="prefetch" href="/interview-practice/assets/js/117.9b5fd0cf.js"><link rel="prefetch" href="/interview-practice/assets/js/118.d7836201.js"><link rel="prefetch" href="/interview-practice/assets/js/119.af6bdc5a.js"><link rel="prefetch" href="/interview-practice/assets/js/12.57871b98.js"><link rel="prefetch" href="/interview-practice/assets/js/120.2cee0b0d.js"><link rel="prefetch" href="/interview-practice/assets/js/121.2d0ceafd.js"><link rel="prefetch" href="/interview-practice/assets/js/122.944dd987.js"><link rel="prefetch" href="/interview-practice/assets/js/123.3e74a7c0.js"><link rel="prefetch" href="/interview-practice/assets/js/124.56919120.js"><link rel="prefetch" href="/interview-practice/assets/js/125.e0a5536b.js"><link rel="prefetch" href="/interview-practice/assets/js/126.b7b00bad.js"><link rel="prefetch" href="/interview-practice/assets/js/127.45d72c21.js"><link rel="prefetch" href="/interview-practice/assets/js/128.0847fde9.js"><link rel="prefetch" href="/interview-practice/assets/js/129.dd58ef75.js"><link rel="prefetch" href="/interview-practice/assets/js/13.191f7989.js"><link rel="prefetch" href="/interview-practice/assets/js/130.43bf43ce.js"><link rel="prefetch" href="/interview-practice/assets/js/131.3e7b97c3.js"><link rel="prefetch" href="/interview-practice/assets/js/132.864eab63.js"><link rel="prefetch" href="/interview-practice/assets/js/133.567ad4bb.js"><link rel="prefetch" href="/interview-practice/assets/js/134.04c12a97.js"><link rel="prefetch" href="/interview-practice/assets/js/135.15c57347.js"><link rel="prefetch" href="/interview-practice/assets/js/136.3373e8f4.js"><link rel="prefetch" href="/interview-practice/assets/js/137.49a17c58.js"><link rel="prefetch" href="/interview-practice/assets/js/138.2f265fb5.js"><link rel="prefetch" href="/interview-practice/assets/js/139.7a891263.js"><link rel="prefetch" href="/interview-practice/assets/js/14.69da8b95.js"><link rel="prefetch" href="/interview-practice/assets/js/140.1782b77d.js"><link rel="prefetch" href="/interview-practice/assets/js/141.99adb767.js"><link rel="prefetch" href="/interview-practice/assets/js/142.ae06dd23.js"><link rel="prefetch" href="/interview-practice/assets/js/143.effaadc6.js"><link rel="prefetch" href="/interview-practice/assets/js/144.1a626760.js"><link rel="prefetch" href="/interview-practice/assets/js/145.2042ee70.js"><link rel="prefetch" href="/interview-practice/assets/js/146.a60d8912.js"><link rel="prefetch" href="/interview-practice/assets/js/147.e46d5af2.js"><link rel="prefetch" href="/interview-practice/assets/js/148.1dcaf193.js"><link rel="prefetch" href="/interview-practice/assets/js/149.197c6d42.js"><link rel="prefetch" href="/interview-practice/assets/js/15.273b7172.js"><link rel="prefetch" href="/interview-practice/assets/js/150.d1858ad0.js"><link rel="prefetch" href="/interview-practice/assets/js/151.73ac14e7.js"><link rel="prefetch" href="/interview-practice/assets/js/152.eb6bde73.js"><link rel="prefetch" href="/interview-practice/assets/js/153.9a2a2007.js"><link rel="prefetch" href="/interview-practice/assets/js/154.0c700e10.js"><link rel="prefetch" href="/interview-practice/assets/js/155.f1ddcb7f.js"><link rel="prefetch" href="/interview-practice/assets/js/156.d7b9faab.js"><link rel="prefetch" href="/interview-practice/assets/js/157.a0f9e5aa.js"><link rel="prefetch" href="/interview-practice/assets/js/158.5f9bb932.js"><link rel="prefetch" href="/interview-practice/assets/js/16.38b7a7b4.js"><link rel="prefetch" href="/interview-practice/assets/js/17.e6e4dc65.js"><link rel="prefetch" href="/interview-practice/assets/js/18.735a5a17.js"><link rel="prefetch" href="/interview-practice/assets/js/19.0a824a47.js"><link rel="prefetch" href="/interview-practice/assets/js/20.b5f56bd9.js"><link rel="prefetch" href="/interview-practice/assets/js/21.4bb13968.js"><link rel="prefetch" href="/interview-practice/assets/js/22.ff41547f.js"><link rel="prefetch" href="/interview-practice/assets/js/23.0f1b2f37.js"><link rel="prefetch" href="/interview-practice/assets/js/24.9f3e688a.js"><link rel="prefetch" href="/interview-practice/assets/js/25.bf085bb3.js"><link rel="prefetch" href="/interview-practice/assets/js/26.90b05373.js"><link rel="prefetch" href="/interview-practice/assets/js/27.909a3bce.js"><link rel="prefetch" href="/interview-practice/assets/js/28.06c2a39a.js"><link rel="prefetch" href="/interview-practice/assets/js/29.83183ae4.js"><link rel="prefetch" href="/interview-practice/assets/js/3.7e70f329.js"><link rel="prefetch" href="/interview-practice/assets/js/30.bb861d4f.js"><link rel="prefetch" href="/interview-practice/assets/js/31.9d58c6a7.js"><link rel="prefetch" href="/interview-practice/assets/js/32.512a37c4.js"><link rel="prefetch" href="/interview-practice/assets/js/33.5fdceb6e.js"><link rel="prefetch" href="/interview-practice/assets/js/34.43ae2cd8.js"><link rel="prefetch" href="/interview-practice/assets/js/35.4c6cbb73.js"><link rel="prefetch" href="/interview-practice/assets/js/36.6e750725.js"><link rel="prefetch" href="/interview-practice/assets/js/37.19513e34.js"><link rel="prefetch" href="/interview-practice/assets/js/38.3b755d66.js"><link rel="prefetch" href="/interview-practice/assets/js/39.18626aed.js"><link rel="prefetch" href="/interview-practice/assets/js/4.e7c996f5.js"><link rel="prefetch" href="/interview-practice/assets/js/40.e2a7da2b.js"><link rel="prefetch" href="/interview-practice/assets/js/41.ffc47447.js"><link rel="prefetch" href="/interview-practice/assets/js/42.dcf7550a.js"><link rel="prefetch" href="/interview-practice/assets/js/43.8b886dac.js"><link rel="prefetch" href="/interview-practice/assets/js/44.1423fb80.js"><link rel="prefetch" href="/interview-practice/assets/js/45.848eba4d.js"><link rel="prefetch" href="/interview-practice/assets/js/46.eabc4d76.js"><link rel="prefetch" href="/interview-practice/assets/js/48.877c6cd9.js"><link rel="prefetch" href="/interview-practice/assets/js/49.7e08e320.js"><link rel="prefetch" href="/interview-practice/assets/js/5.6eff8140.js"><link rel="prefetch" href="/interview-practice/assets/js/50.b82c87ae.js"><link rel="prefetch" href="/interview-practice/assets/js/51.a0173448.js"><link rel="prefetch" href="/interview-practice/assets/js/52.fb30a271.js"><link rel="prefetch" href="/interview-practice/assets/js/53.1ee22aa6.js"><link rel="prefetch" href="/interview-practice/assets/js/54.f8e41a96.js"><link rel="prefetch" href="/interview-practice/assets/js/55.013c93b1.js"><link rel="prefetch" href="/interview-practice/assets/js/56.8f0b7495.js"><link rel="prefetch" href="/interview-practice/assets/js/57.5ede19dd.js"><link rel="prefetch" href="/interview-practice/assets/js/58.5c09763c.js"><link rel="prefetch" href="/interview-practice/assets/js/59.d314add0.js"><link rel="prefetch" href="/interview-practice/assets/js/6.17d5dd20.js"><link rel="prefetch" href="/interview-practice/assets/js/60.de76aba2.js"><link rel="prefetch" href="/interview-practice/assets/js/61.ee7763f6.js"><link rel="prefetch" href="/interview-practice/assets/js/62.4bedc441.js"><link rel="prefetch" href="/interview-practice/assets/js/63.f98e5971.js"><link rel="prefetch" href="/interview-practice/assets/js/64.d7357db9.js"><link rel="prefetch" href="/interview-practice/assets/js/65.4a4b7b5b.js"><link rel="prefetch" href="/interview-practice/assets/js/66.5095e787.js"><link rel="prefetch" href="/interview-practice/assets/js/67.ac3c846d.js"><link rel="prefetch" href="/interview-practice/assets/js/68.e1b8e92c.js"><link rel="prefetch" href="/interview-practice/assets/js/69.febbe467.js"><link rel="prefetch" href="/interview-practice/assets/js/7.83ff415e.js"><link rel="prefetch" href="/interview-practice/assets/js/70.96b16f21.js"><link rel="prefetch" href="/interview-practice/assets/js/71.43d47ec4.js"><link rel="prefetch" href="/interview-practice/assets/js/72.d9695dc6.js"><link rel="prefetch" href="/interview-practice/assets/js/73.ba9be6a1.js"><link rel="prefetch" href="/interview-practice/assets/js/74.3a82e6d2.js"><link rel="prefetch" href="/interview-practice/assets/js/75.1c89232a.js"><link rel="prefetch" href="/interview-practice/assets/js/76.ad261378.js"><link rel="prefetch" href="/interview-practice/assets/js/77.fc656b38.js"><link rel="prefetch" href="/interview-practice/assets/js/78.bf1e30cb.js"><link rel="prefetch" href="/interview-practice/assets/js/79.a93c7dc7.js"><link rel="prefetch" href="/interview-practice/assets/js/8.06cde630.js"><link rel="prefetch" href="/interview-practice/assets/js/80.35d4ac3f.js"><link rel="prefetch" href="/interview-practice/assets/js/81.872533cf.js"><link rel="prefetch" href="/interview-practice/assets/js/82.6cb42b44.js"><link rel="prefetch" href="/interview-practice/assets/js/83.5ed030f2.js"><link rel="prefetch" href="/interview-practice/assets/js/84.810c5188.js"><link rel="prefetch" href="/interview-practice/assets/js/85.fa5cef48.js"><link rel="prefetch" href="/interview-practice/assets/js/86.9397fdbd.js"><link rel="prefetch" href="/interview-practice/assets/js/87.d0c39bea.js"><link rel="prefetch" href="/interview-practice/assets/js/88.b29c86f9.js"><link rel="prefetch" href="/interview-practice/assets/js/89.f0babf6c.js"><link rel="prefetch" href="/interview-practice/assets/js/9.aa9c870c.js"><link rel="prefetch" href="/interview-practice/assets/js/90.491ba36a.js"><link rel="prefetch" href="/interview-practice/assets/js/91.5bfef8b0.js"><link rel="prefetch" href="/interview-practice/assets/js/92.e2e9c574.js"><link rel="prefetch" href="/interview-practice/assets/js/93.43e0ca04.js"><link rel="prefetch" href="/interview-practice/assets/js/94.a8f47436.js"><link rel="prefetch" href="/interview-practice/assets/js/95.8ee90a84.js"><link rel="prefetch" href="/interview-practice/assets/js/96.09696f23.js"><link rel="prefetch" href="/interview-practice/assets/js/97.19f4a12a.js"><link rel="prefetch" href="/interview-practice/assets/js/98.d08d598f.js"><link rel="prefetch" href="/interview-practice/assets/js/99.0b74613b.js">
+    <link rel="stylesheet" href="/interview-practice/assets/css/0.styles.f521d097.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/interview-practice/" class="home-link router-link-active"><!----> <span class="site-name">前端面试刷题</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/iloveyou11/interview-practice" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/iloveyou11/learning-blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  个人博客
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/iloveyou11/interview-practice" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/iloveyou11/learning-blog" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  个人博客
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>html/css系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>框架系列</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/interview-practice/framework/1.html" class="sidebar-link">react或vue中diff时间复杂度</a></li><li><a href="/interview-practice/framework/2.html" class="sidebar-link">react-router里Link和a有什么区别</a></li><li><a href="/interview-practice/framework/3.html" class="sidebar-link">reducer为什么设计成纯函数？</a></li><li><a href="/interview-practice/framework/4.html" class="sidebar-link">Virtual DOM真的比操作DOM快吗？</a></li><li><a href="/interview-practice/framework/5.html" class="sidebar-link">聊聊 Redux 和 Vuex 的设计思想</a></li><li><a href="/interview-practice/framework/6.html" class="sidebar-link">React中setState同步还是异步？</a></li><li><a href="/interview-practice/framework/8.html" class="sidebar-link">react api原理知道吗？</a></li><li><a href="/interview-practice/framework/9.html" class="sidebar-link">react hooks原理知道吗？</a></li><li><a href="/interview-practice/framework/12.html" aria-current="page" class="active sidebar-link">dom diff怎么实现的知道吗？</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/interview-practice/framework/12.html#实现dom-diff算法" class="sidebar-link">实现dom diff算法</a></li></ul></li><li><a href="/interview-practice/framework/7.html" class="sidebar-link">vue 是如何对数组方法进行变异的？</a></li><li><a href="/interview-practice/framework/11.html" class="sidebar-link">vue中MVVM模式怎么实现的知道吗？</a></li><li><a href="/interview-practice/framework/10.html" class="sidebar-link">jquery原理知道多少？</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>算法系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>网络系列</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="dom-diff怎么实现的知道吗"><a href="#dom-diff怎么实现的知道吗" class="header-anchor">#</a> dom diff怎么实现的知道吗？</h3> <p><strong>dom diff的基本概念：</strong>
+根据两个虚拟dom创建出补丁, 描述改变的内容, 将这个补丁用来更新dom</p> <p><strong>dom diff的几种优化策略：</strong></p> <ol><li>更新时只比较同级，并不会跨层比较</li> <li>同层变化能复用，使用key</li></ol> <h2 id="实现dom-diff算法"><a href="#实现dom-diff算法" class="header-anchor">#</a> 实现dom diff算法</h2> <p>我们先写一个主文件，把需要引入的文件和导出的函数列出来，一步步去实现。这里，我们需要创建以下文件：</p> <div class="language-md extra-class"><pre class="language-md"><code><span class="token list punctuation">-</span> index.js（主文件入口）
+  <span class="token list punctuation">1.</span> 创建virtual DOM1、virtual DOM2
+  <span class="token list punctuation">2.</span> 渲染virtual DOM1至页面中
+  <span class="token list punctuation">3.</span> 对比virtual DOM2与virtual DOM1的区别，形成补丁
+  <span class="token list punctuation">4.</span> 拿到补丁去更新视图
+
+<span class="token list punctuation">-</span> element.js（导出createElement、render、renderDOM方法）
+<span class="token list punctuation">-</span> diff.js（导出diff方法）
+<span class="token list punctuation">-</span> patch.js（导出patch方法）
+</code></pre></div><h3 id="index-js"><a href="#index-js" class="header-anchor">#</a> index.js</h3> <p>在index.js中，我们创建了两个虚拟dom，故意修改了一些属性值、标签名、文本，以测试后面要实现的diff、patch方法。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 导入其他文件的方法</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+    createElement<span class="token punctuation">,</span>
+    render<span class="token punctuation">,</span>
+    renderDOM
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./element'</span>
+<span class="token keyword">import</span> diff <span class="token keyword">from</span> <span class="token string">'./diff'</span>
+<span class="token keyword">import</span> patch <span class="token keyword">from</span> <span class="token string">'./patch'</span>
+
+<span class="token comment">// 写两个virtual DOM</span>
+<span class="token keyword">const</span> virtualDOM1 <span class="token operator">=</span> <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'list'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'item'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'item'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'item'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> virtualDOM2 <span class="token operator">=</span> <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'list-group'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'item'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'item'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'item'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 将virtualDOM1渲染到页面中</span>
+<span class="token keyword">const</span> el <span class="token operator">=</span> <span class="token function">render</span><span class="token punctuation">(</span>virtualDOM1<span class="token punctuation">)</span>
+<span class="token function">renderDOM</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> window<span class="token punctuation">.</span>root<span class="token punctuation">)</span>
+
+<span class="token comment">// 对比virtualDOM2与virtualDOM1的差异，形成补丁，重新更新视图</span>
+<span class="token keyword">const</span> patches <span class="token operator">=</span> <span class="token function">diff</span><span class="token punctuation">(</span>virtualDOM1<span class="token punctuation">,</span> virtualDOM2<span class="token punctuation">)</span>
+<span class="token function">patch</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> patches<span class="token punctuation">)</span>
+</code></pre></div><p>首先我们实现其中的<code>createElement</code>（创建虚拟dom）、<code>render</code>（将虚拟dom转化为真实dom）、<code>renderDOM</code>（将元素节点插入到页面上）这几个方法。以下有详细的注释：</p> <h3 id="element-js"><a href="#element-js" class="header-anchor">#</a> element.js</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 虚拟dom元素</span>
+<span class="token keyword">class</span> <span class="token class-name">Element</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> props<span class="token punctuation">,</span> children</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>type <span class="token operator">=</span> type
+    <span class="token keyword">this</span><span class="token punctuation">.</span>props <span class="token operator">=</span> props
+    <span class="token keyword">this</span><span class="token punctuation">.</span>children <span class="token operator">=</span> children
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 创建虚拟dom</span>
+<span class="token keyword">function</span> <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> props<span class="token punctuation">,</span> children</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Element</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> props<span class="token punctuation">,</span> children<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * @description 设置属性
+ * @param {*} node 页面节点元素
+ * @param {*} key 设置属性的类型（修改值？修改样式？修改其他属性？）
+ * @param {*} value 设置的新属性值
+ */</span>
+<span class="token keyword">function</span> <span class="token function">setAttr</span><span class="token punctuation">(</span><span class="token parameter">node<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 1. 修改值</span>
+    <span class="token keyword">case</span> <span class="token string">'value'</span><span class="token operator">:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>tagName<span class="token punctuation">.</span>toLowerCase <span class="token operator">===</span> <span class="token string">'input'</span> <span class="token operator">||</span> node<span class="token punctuation">.</span>tagName<span class="token punctuation">.</span>toLowerCase <span class="token operator">===</span> <span class="token string">'textarea'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        node<span class="token punctuation">.</span>value <span class="token operator">=</span> value
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        node<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span>
+    <span class="token comment">// 2. 修改样式</span>
+    <span class="token keyword">case</span> <span class="token string">'style'</span><span class="token operator">:</span>
+      node<span class="token punctuation">.</span>style<span class="token punctuation">.</span>cssText <span class="token operator">=</span> value
+      <span class="token keyword">break</span>
+    <span class="token comment">// 3. 修改其他属性</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      node<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 将虚拟dom转化为真实dom</span>
+<span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter">eleObj</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 根据type创建元素</span>
+  <span class="token keyword">let</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>eleObj<span class="token punctuation">.</span>type<span class="token punctuation">)</span>
+  <span class="token comment">// 给元素设置属性</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> eleObj<span class="token punctuation">.</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setAttr</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> key<span class="token punctuation">,</span> eleObj<span class="token punctuation">.</span>props<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 如果有子节点，则添加子节点</span>
+  eleObj<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">child</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    child <span class="token operator">=</span> <span class="token punctuation">(</span>child <span class="token keyword">instanceof</span> <span class="token class-name">Element</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token function">render</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span> <span class="token operator">:</span> document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span>
+    el<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> el
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 将元素插入到页面内</span>
+<span class="token keyword">function</span> <span class="token function">renderDOM</span><span class="token punctuation">(</span><span class="token parameter">el<span class="token punctuation">,</span> target</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  target<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token punctuation">{</span>
+  createElement<span class="token punctuation">,</span>
+  render<span class="token punctuation">,</span>
+  Element<span class="token punctuation">,</span>
+  renderDOM<span class="token punctuation">,</span>
+  setAttr
+<span class="token punctuation">}</span>
+</code></pre></div><p>【注意】在设置元素属性时，因为不同类型的元素设置属性方法不同，因此我们封装了setAttr函数进行统一设置。</p> <p>目前为止，我们已经实现了创建虚拟dom，并将虚拟dom转化为真实dom渲染到页面中，接下来我们实现核心的diff算法：</p> <p>首先我们需要制定规则：</p> <ol><li>如果节点类型相同但是属性不相同，则产生补丁包：<code>{type;'ATTRS',attrs:{class:'list'}}</code></li> <li>如果旧dom存在但新dom不存在，则产生补丁包：<code>{type;'REMOVE',index:1}</code></li> <li>如果节点类型不相同，直接替换，则产生补丁包：<code>{type;'REPLACE',newNode:newNode}</code></li> <li>如果文本内容变化，则产生补丁包：<code>{type;'TEXT',text:'xxx'}</code></li></ol> <h3 id="diff-js"><a href="#diff-js" class="header-anchor">#</a> diff.js</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 先分为以下4种类别</span>
+<span class="token keyword">const</span> <span class="token constant">ATTRS</span> <span class="token operator">=</span> <span class="token string">'ATTRS'</span>
+<span class="token keyword">const</span> <span class="token constant">REMOVE</span> <span class="token operator">=</span> <span class="token string">'REMOVE'</span>
+<span class="token keyword">const</span> <span class="token constant">REPLACE</span> <span class="token operator">=</span> <span class="token string">'REPLACE'</span>
+<span class="token keyword">const</span> <span class="token constant">TEXT</span> <span class="token operator">=</span> <span class="token string">'TEXT'</span>
+
+<span class="token keyword">let</span> Index <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">const</span> utils <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 工具方法：判断是否是字符串类型</span>
+  <span class="token function-variable function">isString</span><span class="token operator">:</span> <span class="token parameter">node</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Object<span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'[object String]'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 对比新旧属性有哪些变化</span>
+  <span class="token function-variable function">diffAttr</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">oldAttrs<span class="token punctuation">,</span> newAttrs</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> patch <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment">// 1. 节点的新属性值和旧属性值不相同</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> oldAttrs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>oldAttrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">!==</span> newAttrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        patch<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> newAttrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token comment">//有可能是undefined</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 2. 旧节点没有新节点的某些属性</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> newAttrs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>oldAttrs<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        patch<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> newAttrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> patch
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token comment">// 对比子节点</span>
+  <span class="token function-variable function">diffChildren</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">oldChildren<span class="token punctuation">,</span> newChildren<span class="token punctuation">,</span> patches</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    oldChildren<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">child<span class="token punctuation">,</span> idx</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// index每次传给walk时，index是递增的，定义全局变量Index，所有的基于同一序号实现</span>
+      <span class="token function">walk</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> newChildren<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">++</span>Index<span class="token punctuation">,</span> patches<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * @description 深度遍历两棵虚拟dom树，用补丁记录其变更
+ * @param {*} oldNode 旧虚拟dom
+ * @param {*} newNode 新虚拟dom
+ * @param {*} index index序号
+ * @param {*} patches 补丁包，记录其变更
+ */</span>
+<span class="token keyword">function</span> <span class="token function">walk</span><span class="token punctuation">(</span><span class="token parameter">oldNode<span class="token punctuation">,</span> newNode<span class="token punctuation">,</span> index<span class="token punctuation">,</span> patches</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> currentPatch <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment">//每个元素都有一个补丁对象</span>
+
+  <span class="token comment">// 1. 新节点被删除</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>newNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    currentPatch<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token constant">REMOVE</span><span class="token punctuation">,</span>
+      index
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>utils<span class="token punctuation">.</span><span class="token function">isString</span><span class="token punctuation">(</span>oldNode<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> utils<span class="token punctuation">.</span><span class="token function">isString</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 2. 新旧节点都是文本，但是内容发生了变化</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldNode <span class="token operator">!==</span> newNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      currentPatch<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        type<span class="token operator">:</span> <span class="token constant">TEXT</span><span class="token punctuation">,</span>
+        text<span class="token operator">:</span> newNode
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>oldNode<span class="token punctuation">.</span>nodeType <span class="token operator">===</span> newNode<span class="token punctuation">.</span>nodeType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 3. 新旧节点的类型相同，但是属性发生了变化</span>
+    <span class="token keyword">let</span> attrs <span class="token operator">=</span> utils<span class="token punctuation">.</span><span class="token function">diffAttr</span><span class="token punctuation">(</span>oldNode<span class="token punctuation">.</span>props<span class="token punctuation">,</span> newNode<span class="token punctuation">.</span>props<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>attrs<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      currentPatch<span class="token punctuation">.</span><span class="token function">pusH</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token constant">TYPE</span><span class="token operator">:</span> <span class="token constant">ATTRS</span><span class="token punctuation">,</span>
+        attrs
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    utils<span class="token punctuation">.</span><span class="token function">diffChildren</span><span class="token punctuation">(</span>oldNode<span class="token punctuation">.</span>children<span class="token punctuation">,</span> newNode<span class="token punctuation">.</span>children<span class="token punctuation">,</span> patches<span class="token punctuation">)</span> <span class="token comment">// 如果有子节点,遍历子节点</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 4. 节点被替换</span>
+    currentPatch<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token constant">REPLACE</span><span class="token punctuation">,</span>
+      newNode
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">//当前元素确实有补丁</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>currentPatch<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token comment">// 将元素和补丁对应起来,放到大补丁包中</span>
+    patches<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> currentPatch
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 深度遍历两棵虚拟dom树，生成最终的大补丁包patches</span>
+<span class="token keyword">function</span> <span class="token function">diff</span><span class="token punctuation">(</span><span class="token parameter">oldTree<span class="token punctuation">,</span> newTree</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> patches <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token function">walk</span><span class="token punctuation">(</span>oldTree<span class="token punctuation">,</span> newTree<span class="token punctuation">,</span> index<span class="token punctuation">,</span> patches<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> patches
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> diff
+</code></pre></div><p>通过diff方法，我们能对两个虚拟dom产生完整的patches对象（详细记录了更改信息），以便后续的更新操作。接下来，我们实现patch方法，根据patches对象，完成真实dom的更新工作：</p> <h3 id="patch-js"><a href="#patch-js" class="header-anchor">#</a> patch.js</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  Element<span class="token punctuation">,</span>
+  render<span class="token punctuation">,</span>
+  setAttr
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./element'</span>
+
+<span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token comment">// diff分为以下4种类别</span>
+<span class="token keyword">const</span> <span class="token constant">ATTRS</span> <span class="token operator">=</span> <span class="token string">'ATTRS'</span>
+<span class="token keyword">const</span> <span class="token constant">REMOVE</span> <span class="token operator">=</span> <span class="token string">'REMOVE'</span>
+<span class="token keyword">const</span> <span class="token constant">REPLACE</span> <span class="token operator">=</span> <span class="token string">'REPLACE'</span>
+<span class="token keyword">const</span> <span class="token constant">TEXT</span> <span class="token operator">=</span> <span class="token string">'TEXT'</span>
+
+<span class="token comment">// 根据当前节点的补丁包去更新此节点</span>
+<span class="token keyword">function</span> <span class="token function">_doPatch</span><span class="token punctuation">(</span><span class="token parameter">node<span class="token punctuation">,</span> patches</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  patches<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">patch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 根据patch的不同type决定如何去更新dom</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>patch<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 1. 属性变更</span>
+      <span class="token keyword">case</span> <span class="token constant">ATTRS</span><span class="token operator">:</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> patch<span class="token punctuation">.</span>attrs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> value <span class="token operator">=</span> patch<span class="token punctuation">.</span>attrs<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">setAttr</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment">// 如果属性值为undefined则直接删除属性（因为旧节点有此属性但新节点没有时，这里的值为undefined）</span>
+            node<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">break</span>
+
+      <span class="token comment">// 2. 节点移除</span>
+      <span class="token keyword">case</span> <span class="token constant">REMOVE</span><span class="token operator">:</span>
+        node<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+
+      <span class="token comment">// 3. 节点替换</span>
+      <span class="token keyword">case</span> <span class="token constant">REPLACE</span><span class="token operator">:</span>
+        <span class="token keyword">let</span> newNode <span class="token operator">=</span> patch<span class="token punctuation">.</span>newNode <span class="token keyword">instanceof</span> <span class="token class-name">Element</span> <span class="token operator">?</span> <span class="token function">render</span><span class="token punctuation">(</span>patch<span class="token punctuation">.</span>newNode<span class="token punctuation">)</span> <span class="token operator">:</span> document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span>patch<span class="token punctuation">.</span>newNode<span class="token punctuation">)</span>
+        node<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">replaceChild</span><span class="token punctuation">(</span>newNode<span class="token punctuation">,</span> node<span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+
+      <span class="token comment">// 4. 文本更改</span>
+      <span class="token keyword">case</span> <span class="token constant">TEXT</span><span class="token operator">:</span>
+        node<span class="token punctuation">.</span>textContent <span class="token operator">=</span> patch<span class="token punctuation">.</span>text
+        <span class="token keyword">break</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 导出patch函数</span>
+<span class="token keyword">function</span> <span class="token function">patch</span><span class="token punctuation">(</span><span class="token parameter">node<span class="token punctuation">,</span> patches</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> currentPatch <span class="token operator">=</span> patches<span class="token punctuation">[</span>index<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token comment">// 拿到当前节点的补丁包</span>
+  <span class="token keyword">let</span> childNodes <span class="token operator">=</span> node<span class="token punctuation">.</span>childNodes <span class="token comment">// 拿到当前节点的子节点</span>
+  <span class="token comment">// 遍历子节点</span>
+  childNodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">child</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">_walk</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 根据当前节点的补丁包去更新此节点</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>currentPatch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">_doPatch</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> currentPatch<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> patch
+</code></pre></div><p>终于完成啦！可以愉快地使用index.js进行测试了~</p> <p>但是此时的dom diff策略还有很多需要优化的地方，例如：</p> <ol><li>如果同级只是交换节点位置，会导致重新渲染（应该只是交换位置），这时应该考虑到key标识减少重复渲染</li> <li>新增节点也不会被更新</li> <li>……</li></ol> <p>后期将继续完善dom diff策略~</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/interview-practice/framework/9.html" class="prev">
+        react hooks原理知道吗？
+      </a></span> <span class="next"><a href="/interview-practice/framework/7.html">
+        vue 是如何对数组方法进行变异的？
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/interview-practice/assets/js/app.dca29c20.js" defer></script><script src="/interview-practice/assets/js/2.8c098b1a.js" defer></script><script src="/interview-practice/assets/js/47.1b818390.js" defer></script>
+  </body>
+</html>
